@@ -1,1 +1,1 @@
-complete/prepreprocessing/dicom_import.asv complete/prepreprocessing/merge_to_4D.asv complete/preprocessing/normalization.asv complete/preprocessing/realignment.asv complete/preprocessing/slice_timing_correction.asv
+**/*.asv
