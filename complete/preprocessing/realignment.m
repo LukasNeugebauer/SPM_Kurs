@@ -1,8 +1,8 @@
 %Realignment of the EPI images, i.e. we try to correct for movement
-%This scripts implements the "Estimate" version, i.e. we're only writing
-%information into the NIFTI headers, but don't actually write a new image
-%The information gets used again once we write a new image in the
-%normalization step
+%This scripts uses the "Estimate & Reslice" version, but we tweak it so
+%that we're not actually writing new files, only a mean EPI. The information
+%about the reslicing gets stored in the header and applied the next time we 
+%write a new image, which is going to be in the normalization step
 
 %you know this stuff
 base_dir = get_base_dir;
