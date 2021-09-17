@@ -17,8 +17,6 @@ base_dir = get_base_dir;
 pp_dir = base_dir.preproc;
 
 %collect all the files
-%they have to be in a 1xn_runs Cell array, with every entry having all the
-%scans for one session
 n_runs = 3; 
 scans = cell(1, n_runs);
 %sprintf template for the directories
@@ -37,7 +35,7 @@ t1 = {spm_select('FPList', t1_dir, t1_tmpl)};
 epis = cell(1, 3);
 for r = 1:n_runs
     direc = fullfile(pp_dir, sprintf(dir_tmpl, r));
-    files = spm_select('ExtFPList', direc, file_tmpl);
+    files = spm_select('ExtFPList', direc, epi_tmpl);
     epis{r} = cellstr(files);
 end
 
