@@ -17,8 +17,6 @@ epi_tmpl = '^mean.*\.nii$';
 t1_file = spm_select('FPList', t1_dir, t1_tmpl);
 epi_file = spm_select('FPList', epi_dir, epi_tmpl);
 
-disp(t1_file);
-disp(epi_file);
 %create the matlabbatch
 matlabbatch = {};
 matlabbatch{1}.spm.spatial.coreg.estimate.ref = {epi_file}; %we coregister the T1 TO the EPI, so the EPI is the reference
