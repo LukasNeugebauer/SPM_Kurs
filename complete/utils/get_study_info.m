@@ -14,14 +14,17 @@ switch study
     case 'rose'
         TR = 2.6;
         n_slices = 32;
+        subs = [1, 2];
     case 'preproc'
         TR = 2.87;
         n_slices = 48;
+        subs = 1;
     otherwise
         error('Unknown option. Try ''preproc'' or ''rose''.');
 end
 
 s_info.TR = TR;
 s_info.n_slices = n_slices;
+s_info.subs = subs;
 
 end
