@@ -1,3 +1,4 @@
+function normalization
 %Normalize T1 image and EPIs, i.e. morph them into the space of the
 %standard brain as defined by the MNI template
 %
@@ -65,3 +66,5 @@ matlabbatch{1}.spm.spatial.normalise.estwrite.woptions.interp = 4;
 matlabbatch{1}.spm.spatial.normalise.estwrite.woptions.prefix = 'w';
 
 spm_jobman('run', matlabbatch);
+
+end

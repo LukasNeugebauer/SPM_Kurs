@@ -1,3 +1,4 @@
+function coregistration
 %Now we bring the T1 and the mean EPI in the same space 
 %because we will normalize the EPIs based on a segmentation of the T1 image
 %and if they would be in different spaces that would give completely
@@ -29,3 +30,5 @@ matlabbatch{1}.spm.spatial.coreg.estimate.eoptions.fwhm = [7 7];
 
 %and run it
 spm_jobman('run', matlabbatch);
+
+end

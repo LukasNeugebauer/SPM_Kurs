@@ -1,3 +1,4 @@
+function dicom_import
 %Import DICOM images inplace
 %Since we won't need them again, we're going to delete them afterwards and
 %only keep the niftis
@@ -78,3 +79,4 @@ end
 %batch
 %this is the equivalent of hitting the green arrow in the batch editor 
 spm_jobman('run', matlabbatch)
+end

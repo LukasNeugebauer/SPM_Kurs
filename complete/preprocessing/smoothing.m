@@ -1,3 +1,4 @@
+function smoothing
 %This is the last part before the firstlevel analysis: Smoothing the niftis
 %with a Gaussian smoothing kernel to ensure uniform distribution of errors
 %and reduce number of independent elements (resels)
@@ -38,3 +39,5 @@ matlabbatch{1}.spm.spatial.smooth.prefix = 's';
 
 %run the batch
 spm_jobman('run', matlabbatch);
+
+end

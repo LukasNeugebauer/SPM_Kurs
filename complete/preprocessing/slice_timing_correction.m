@@ -1,3 +1,4 @@
+function slice_timing_correction
 %Slices per volume are not all collected at the same time
 %Whether or not we actually need to correct for that is on another page
 %But here's how you do it

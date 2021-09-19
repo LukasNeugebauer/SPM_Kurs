@@ -1,3 +1,4 @@
+function merge_to_4D
 %We could just go on with the single niftis, i.e. one file per volume. But
 %that's going to be very tedious, so instead we're going to merge them
 %together to a single 4D nifti where the first three dimensions are space
@@ -68,3 +69,4 @@ end
 
 %and we just need to run the whole matlabbatch once it's defined
 spm_jobman('run', matlabbatch);
+end

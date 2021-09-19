@@ -1,3 +1,4 @@
+function realignment
 %Realignment of the EPI images, i.e. we try to correct for movement
 %This scripts uses the "Estimate & Reslice" version, but we tweak it so
 %that we're not actually writing new files, only a mean EPI. The information
@@ -45,3 +46,5 @@ matlabbatch{1}.spm.spatial.realign.estwrite.roptions.prefix = 'r';
 
 %run the batch
 spm_jobman('run', matlabbatch);
+
+end
