@@ -2,10 +2,11 @@
 %Whether or not we actually need to correct for that is on another page
 %But here's how you do it
 
-%some hardcoded information, usually we try to avoid stuff like that, but
-%we'll make an exception
-TR = 2.87;
-n_slices = 48;
+%we use information that is hardcoded elsewhere, so that it's only
+%hardcoded ONCE. This is a lot less susceptible to mistakes
+s_info = get_study_info('preproc');
+TR = s_info.TR;
+n_slices = s_info.n_slices;
 TA = TR - (TR / n_slices);
 slice_order = n_slices:-1:1;
 ref_slice = floor(n_slices / 2);
