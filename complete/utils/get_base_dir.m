@@ -12,11 +12,14 @@ base_dir = [];
 if strcmp(name, 'manjaro')
     %change this to the folder to which you downloaded the spm kurs data
     base_dir.base = '/home/media/spm_kurs_data';
-    base_dir.preproc = fullfile(base_dir.base, 'PreProcessing');
-    base_dir.firstlevel = fullfile(base_dir.base, 'First_Level');
-    base_dir.secondlevel = fullfile(base_dir.base, 'Second_Level');
+elseif strcmp(name, 'archlinux')
+    base_dir.base = '/home/data/spm_kurs_data';
 else
     error('%s not yet implemented as host', name);
 end
+
+base_dir.preproc = fullfile(base_dir.base, 'PreProcessing');
+base_dir.firstlevel = fullfile(base_dir.base, 'First_Level');
+base_dir.secondlevel = fullfile(base_dir.base, 'Second_Level');
 
 end
