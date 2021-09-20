@@ -3,7 +3,7 @@ function fl_design_spec
 %Runs model specification, but doesn't estimate it!
 
 %collect study info
-s_info = get_study_info('rose');
+s_info = get_study_info('firstlevel');
 TR = s_info.TR;
 n_slices = s_info.n_slices;
 subs = s_info.subs;

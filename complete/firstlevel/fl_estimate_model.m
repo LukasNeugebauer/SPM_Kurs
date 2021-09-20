@@ -4,7 +4,7 @@ function fl_estimate_model
 %specification, but it's good to review the first level model first before
 %estimating it
 
-s_info = get_study_info('rose');
+s_info = get_study_info('firstlevel');
 subs = s_info.subs;
 
 base_dir = get_base_dir;
