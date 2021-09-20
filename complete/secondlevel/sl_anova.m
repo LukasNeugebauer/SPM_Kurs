@@ -96,8 +96,8 @@ matlabbatch{3}.spm.stats.con.consess{2}.fcon.name = 'me_vis';
 matlabbatch{3}.spm.stats.con.consess{2}.fcon.weights = me_vis;
 matlabbatch{3}.spm.stats.con.consess{2}.fcon.sessrep = 0;
 
-matlabbatch{3}.spm.stats.con.consess{3}.fcon.name = 'i_wm_vis1';
-matlabbatch{3}.spm.stats.con.consess{3}.tcon.weights = i_wm_vis;
+matlabbatch{3}.spm.stats.con.consess{3}.fcon.name = 'i_wm_vis';
+matlabbatch{3}.spm.stats.con.consess{3}.fcon.weights = i_wm_vis;
 matlabbatch{3}.spm.stats.con.consess{3}.fcon.sessrep = 0;
 
 %run that batch!
