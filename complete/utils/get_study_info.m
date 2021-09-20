@@ -23,7 +23,7 @@ switch study
         %same study as firstlevel, but the subs are different
         TR = 2.6;
         n_slices = 32;
-        subs = 1:10;
+        subs = 1:14;
     otherwise
         error('Unknown option. Try ''preproc'', ''secondlevel'' or ''firstlevel''.');
 end
