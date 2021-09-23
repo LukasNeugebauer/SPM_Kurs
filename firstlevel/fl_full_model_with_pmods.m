@@ -1,4 +1,4 @@
-function fl_with_pmods
+function fl_full_model_with_pmods
 %Design specification for the firstlevel analysis using a parametric
 %modulator for visibility
 %We'll only have two regressors, which signify the onsets of the 1-back and
