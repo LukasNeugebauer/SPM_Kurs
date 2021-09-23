@@ -9,8 +9,8 @@ function fl_contrast_definition
 % In addition we're going to compute a few contrasts for didactic purposes:
 % * effect of interest (generic F-contrast containing all regressors of
 %   interest
-% * differential contrasts for 2-back vs. 1-back
-
+% * main effects for working memory and visibility
+% * interaction effect of working memory and visibility
 
 %first, we define the contrast vectors
 eff_of_int = repmat([eye(10), zeros(10, 6)], 1, 3);
@@ -19,8 +19,9 @@ eff_of_int = repmat([eye(10), zeros(10, 6)], 1, 3);
 %above
 
 %differential contrasts
-two_lt_one = repmat([-ones(1, 5), ones(1, 5), zeros(1, 6)], 1, 3);
-one_lt_two = - two_lt_one;
+me_wm = [-ones(1, 5), ones(1, 5)];
+me_vis = [-2:2, -2:2];
+i_wm_vis = - me_wm .* me_vis; %the minus corresponds to the expected effect in the paper
 
 %path info
 base_dir = get_base_dir;
@@ -44,7 +45,7 @@ for s = subs
     con_counter = 0;
     
     %find the SPM.mat
-    spmmat = fullfile(fl_dir, sprintf('VP%d', s), 'firstlevel', 'SPM.mat');
+    spmmat = fullfile(fl_dir, sprintf('VP%d', s), 'factorial_design', 'SPM.mat');
     
     %This is the general stuff that is not for a specific contrast
     matlabbatch{sub_counter}.spm.stats.con.spmmat = {spmmat};
@@ -61,19 +62,24 @@ for s = subs
     
     %differential t-contrasts for n-back tasks
     con_counter = con_counter + 1;
-    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.name = '2back>1back';
-    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.weights = two_lt_one;
+    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.name = 'me_wm';
+    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.weights = me_wm;
     matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.sessrep = 'none';
     
     con_counter = con_counter + 1;
-    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.name = '1back>2back';
-    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.weights = one_lt_two;
+    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.name = 'me_vis';
+    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.weights = me_vis;
+    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.sessrep = 'none';
+    
+    con_counter = con_counter + 1;
+    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.name = 'i_wm_vis';
+    matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.weights = i_wm_vis;
     matlabbatch{sub_counter}.spm.stats.con.consess{con_counter}.tcon.sessrep = 'none';
     
     %collapsing the regressors over sessions. remember, there are 2 levels
     %of working memory and 5 levels of visibility
     %these are the contrasts that we will be using in the secondlevel
-    %analysis
+    %analysis, if we define the interesting contrasts there
     row_counter = 0;
     for wm = 1:2
         for vis = 1:5

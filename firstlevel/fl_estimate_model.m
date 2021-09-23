@@ -15,7 +15,7 @@ counter = 0;
 
 for s = subs
     counter = counter + 1;
-    sub_dir = fullfile(fl_dir, sprintf('VP%d', s), 'firstlevel');
+    sub_dir = fullfile(fl_dir, sprintf('VP%d', s), 'factorial_design');
     spmmat = fullfile(sub_dir, 'SPM.mat');
     matlabbatch{counter}.spm.stats.fmri_est.spmmat = {spmmat};
     matlabbatch{counter}.spm.stats.fmri_est.write_residuals = 0;

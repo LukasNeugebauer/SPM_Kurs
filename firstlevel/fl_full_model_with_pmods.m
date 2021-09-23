@@ -1,6 +1,9 @@
-function fl_design_spec
-%Design specification for the firstlevel analysis
-%Runs model specification, but doesn't estimate it!
+function fl_with_pmods
+%Design specification for the firstlevel analysis using a parametric
+%modulator for visibility
+%We'll only have two regressors, which signify the onsets of the 1-back and
+%2-back tasks respectively, but we'll put a pmod on them for visibility
+%Will also run model estimation
 
 %collect study info
 s_info = get_study_info('firstlevel');
@@ -41,7 +44,7 @@ for s = subs
     sub_dir = fullfile(fl_dir, sprintf('VP%d', s));
     
     %where do we want to write the SPM.mat
-    out_dir = fullfile(sub_dir, 'factorial_design');
+    out_dir = fullfile(sub_dir, 'parametric_design');
     create_if_necessary(out_dir);
     
     %this is the general information which doesn't depend on the run
@@ -78,19 +81,36 @@ for s = subs
         onsets = onsets.(sprintf('run%d_onsets', r));
         
         %now we need to create our conditions for the specified run
+        %this time there will be only two regressors per run, one for the
+        %onsets of 1-back-blocks and one for 2-back-blocks
         cond = [];
-        cond_counter = 0;
         for w = 1:n_wm
-            for v = 1:n_vis
-                cond_counter = cond_counter + 1;
-                name = sprintf('wm-%d_vis-%d', w, v);
-                cond(cond_counter).name = name;
-                cond(cond_counter).onset = onsets{cond_counter};
-                cond(cond_counter).duration = duration;
-                cond(cond_counter).tmod = 0;
-                cond(cond_counter).pmod = struct('name', {}, 'param', {}, 'poly', {});
-                cond(cond_counter).orth = 0;
-            end
+            
+            %the five first entries of onsets are the 1-back tasks, the
+            %entries 6:10 are 2-back
+            times = cat(2, onsets{(w - 1) * 5 + 1:w * 5});
+            % the first two onsets are visibility 1, then 2 and so on
+            values = repelem(1:5, 2);
+            %we bring them in the right order
+            [times, idx] = sort(times);
+            values = values(idx);
+            
+            %the name and poly info, poly = {1} means that we're only
+            %looking for linear effects
+            poly = {1};
+            pname = {'visibility'};
+            %this is the structure that we give for the pmods
+            pmod = struct('name', pname, 'param', values, 'poly', poly);
+            
+            
+            name = sprintf('wm-%d', w);
+            cond(w).name = name;
+            cond(w).onset = times;
+            cond(w).duration = duration;
+            cond(w).tmod = 0;
+            cond(w).pmod = pmod;
+            cond(w).orth = 0;
+
         end
         matlabbatch{counter}.spm.stats.fmri_spec.sess(r).cond = cond;
         
@@ -102,6 +122,14 @@ for s = subs
 
     %end of the run loop,    
     end
+    
+    %add the batch for estimation
+    counter = counter + 1;
+    spmmat = fullfile(out_dir, 'SPM.mat');
+    matlabbatch{counter}.spm.stats.fmri_est.spmmat = {spmmat};
+    matlabbatch{counter}.spm.stats.fmri_est.write_residuals = 0;
+    matlabbatch{counter}.spm.stats.fmri_est.method.Classical = 1;
+    
 %and end of the subject loop 
 end
 
