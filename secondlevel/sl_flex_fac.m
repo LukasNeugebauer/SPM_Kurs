@@ -1,9 +1,12 @@
-function sl_anova
+function sl_flex_fac
 %This is an example of the approach where you take the beta-images or
 %simple contrasts (like collapsing over sessions) to the secondlevel. In
 %this approach contrasts of interest are specified on the second level
 %instead. This approaches takes complexity away on the first level, but
-%shifts it to the secondlevel
+%shifts it to the secondlevel. Flexible factorial is only one way to set
+%this up and it's (as the name suggests) very flexible. Another way for
+%this model would be to set up a within-subjects ANOVA. You can see this in
+%sl_anova
 %
 %We'll specify and run the model and compute contrasts in the same script
 
@@ -13,7 +16,7 @@ s_info = get_study_info('secondlevel');
 subs = s_info.subs;
 
 %define and create output directory
-out_dir = fullfile(sl_dir, 'ANOVA', 'secondlevel');
+out_dir = fullfile(sl_dir, 'ANOVA', 'flex_fac');
 create_if_necessary(out_dir);
 
 %define conditions for the flexible factorial design

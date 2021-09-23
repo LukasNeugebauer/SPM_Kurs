@@ -14,7 +14,7 @@ sl_dir = base_dir.secondlevel;
 s_info = get_study_info('secondlevel');
 
 %define the output directory
-out_dir = fullfile(sl_dir, 'OneSampleTTest_ME_WM', 'secondlevel');
+out_dir = fullfile(sl_dir, 'OneSampleTTest_ME_WM', 'me_wm_ttest');
 create_if_necessary(out_dir);
 
 %collect the files
