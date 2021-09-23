@@ -93,15 +93,15 @@ matlabbatch{3}.spm.stats.con.delete = 1;
 
 matlabbatch{3}.spm.stats.con.consess{1}.fcon.name = 'me_wm';
 matlabbatch{3}.spm.stats.con.consess{1}.fcon.weights = me_wm;
-matlabbatch{3}.spm.stats.con.consess{1}.fcon.sessrep = 0;
+matlabbatch{3}.spm.stats.con.consess{1}.fcon.sessrep = None;
 
 matlabbatch{3}.spm.stats.con.consess{2}.fcon.name = 'me_vis';
 matlabbatch{3}.spm.stats.con.consess{2}.fcon.weights = me_vis;
-matlabbatch{3}.spm.stats.con.consess{2}.fcon.sessrep = 0;
+matlabbatch{3}.spm.stats.con.consess{2}.fcon.sessrep = None;
 
 matlabbatch{3}.spm.stats.con.consess{3}.fcon.name = 'i_wm_vis';
 matlabbatch{3}.spm.stats.con.consess{3}.fcon.weights = i_wm_vis;
-matlabbatch{3}.spm.stats.con.consess{3}.fcon.sessrep = 0;
+matlabbatch{3}.spm.stats.con.consess{3}.fcon.sessrep = None;
 
 %run that batch!
 spm_jobman('run', matlabbatch);
