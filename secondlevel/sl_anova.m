@@ -68,16 +68,18 @@ matlabbatch{3}.spm.stats.con.delete = 1;
 
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.name = 'me_wm';
 matlabbatch{3}.spm.stats.con.consess{1}.tcon.weights = me_wm;
-matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = None;
+matlabbatch{3}.spm.stats.con.consess{1}.tcon.sessrep = 'None';
 
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.name = 'me_vis';
 matlabbatch{3}.spm.stats.con.consess{2}.tcon.weights = me_vis;
-matlabbatch{3}.spm.stats.con.consess{2}.tcon.sessrep = None;
+matlabbatch{3}.spm.stats.con.consess{2}.tcon.sessrep = 'None';
 
 %F-contrast because I have no clue what the expected direction is
 matlabbatch{3}.spm.stats.con.consess{3}.fcon.name = 'i_wm_vis';
 matlabbatch{3}.spm.stats.con.consess{3}.fcon.weights = i_wm_vis;
-matlabbatch{3}.spm.stats.con.consess{3}.fcon.sessrep = None;
+matlabbatch{3}.spm.stats.con.consess{3}.fcon.sessrep = 'None';
+
+keyboard
 
 %run the batch
 spm_jobman('run', matlabbatch);
